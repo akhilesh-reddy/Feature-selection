@@ -5,9 +5,6 @@
 
 # ## Calculation of IV and WOE for Categorical Variables
 
-# In[49]:
-
-
 import pandas as pd
 import numpy as np
 
@@ -52,14 +49,8 @@ for i in range(0,df1.shape[0]):
     k[i] = z[i].sum()
     iv[i] = k[i]['iv']
 
-
-# In[51]:
-
 s = pd.Series(iv, name='iv')
 s1 = pd.DataFrame({'variables':df2,'iv':s.values})
-
-
-# In[52]:
 
 s1
 
