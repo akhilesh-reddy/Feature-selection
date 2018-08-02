@@ -5,21 +5,13 @@
 
 # #### Importing the libraries
 
-# In[1]:
-
 import pandas as pd
 import numpy as np
 import scipy.stats as stats
 
-
-# In[2]:
-
 # Importing the data for Chi Square test
 test_data = pd.read_csv('Data for Chi Square test-1.csv')
 test_data.head()
-
-
-# In[3]:
 
 # Aggregating the numbers for each segment and Geico Buyers numbers
 aggt1 = test_data.groupby(['type_segment','segment','geico_buyers'])['nbi_person_id'].count().reset_index()
@@ -27,20 +19,9 @@ aggt1 = test_data.groupby(['type_segment','segment','geico_buyers'])['nbi_person
 # aggt = aggt.rename(columns={'nbi_person_id': 'count_pids'})
 list = aggt1['type_segment'].unique()
 
-
-# In[4]:
-
-list
-
-
-# In[5]:
-
 df1 = pd.DataFrame({'type_segment': list})
 #df2 = df1['type_segment'].tolist()
 df1
-
-
-# In[6]:
 
 ## Calculation of Chi-Square for the given product
 no_cols = {}
@@ -91,20 +72,11 @@ for i in range(0,df1.shape[0]):
     ## p-value
     p_value[i]=stats.distributions.chi2.sf(chi_square[i], degrees_of_freedom[i])
 
-
-# In[25]:
-
 p_value
-
-
-# In[18]:
 
 s = pd.Series(p_value, name='p_value')
 s1 = pd.DataFrame({'type_segment':df2,'p_value':s.values})
 s1.sort_values(by=['p_value'],ascending =False)
-
-
-# In[96]:
 
 import math
 df4 = pd.read_csv('test.csv')
@@ -137,9 +109,4 @@ z['pct_events'] = z['weights1']/7481
 
 z['woe'] = np.log(z['pct_events']/z['pct_non_events'])
 z['iv'] = (z['pct_events']-z['pct_non_events'])*z['woe']
-
-
-# In[97]:
-
 z
-
